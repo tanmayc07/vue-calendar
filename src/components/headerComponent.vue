@@ -25,7 +25,7 @@ h1 {
 
   &::selection {
     color: lightblue;
-    background-color: rgb(27, 27, 27);
+    /* background-color: rgb(27, 27, 27); */
   }
 }
 </style>
