@@ -14,8 +14,18 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
+  margin-top: 20px;
   text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &::selection {
+    color: lightblue;
+    background-color: rgb(27, 27, 27);
+  }
 }
 </style>
