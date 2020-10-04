@@ -90,6 +90,7 @@ export default {
     svg {
       &:hover {
         cursor: pointer;
+        color: white;
         opacity: 0.7;
       }
     }
@@ -100,6 +101,11 @@ export default {
 
       &::selection {
         color: lightblue;
+      }
+
+      &:hover {
+        color: rgb(251, 251, 251);
+        cursor: pointer;
       }
     }
   }
