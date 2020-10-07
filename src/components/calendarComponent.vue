@@ -2,6 +2,7 @@
   <div id="calendar__container">
     <div class="calendar__header">
       <svg
+        @click="getPreviousMonth"
         xmlns="http://www.w3.org/2000/svg"
         class="icon icon-tabler icon-tabler-arrow-left-circle left-arrow"
         width="44"
@@ -21,6 +22,7 @@
       </svg>
       <h2>{{ month }}</h2>
       <svg
+        @click="getNextMonth"
         xmlns="http://www.w3.org/2000/svg"
         class="icon icon-tabler icon-tabler-arrow-right-circle right-arrow"
         width="44"
@@ -47,10 +49,41 @@ import { ref } from "vue";
 
 export default {
   setup() {
-    const month = ref("January 2020");
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    let date = new Date();
+    let currentMonth = date.getMonth();
+    let currentYear = date.getFullYear();
+    let month = ref(`${months[currentMonth]} ${currentYear}`);
+
+    function getNextMonth() {
+      currentYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+      currentMonth = (currentMonth + 1) % 12;
+      month.value = `${months[currentMonth]} ${currentYear}`;
+    }
+
+    function getPreviousMonth() {
+      currentYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+      currentMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+      month.value = `${months[currentMonth]} ${currentYear}`;
+    }
 
     return {
       month,
+      getNextMonth,
+      getPreviousMonth,
     };
   },
 };
@@ -100,7 +133,7 @@ export default {
       justify-self: center;
 
       &::selection {
-        color: lightblue;
+        background-color: lightblue;
       }
 
       &:hover {
